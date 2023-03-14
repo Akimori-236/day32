@@ -35,7 +35,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   submitForm() {
-    // const rsvp = this.regForm.value as RSVP // cast form input as object
+    // const rsvp = this.regForm.value as RSVP // cast form input as object (DIRECT MAPPING)
     const rsvp: RSVP = {
       name: this.regForm.get("name")?.value,
       email: this.regForm.get("email")?.value,
