@@ -17,6 +17,13 @@
     </tr>
   </table>
 
+  <div>
+    <!-- to show every time there is changes -->
+    <!-- maybe use to check username is available -->
+    
+    {{ todoForm.valueChanges | async | json }}
+  </div>
+
   <div *ngIf="taskArray.controls.length == 0"><p>Dobby is a free Elf</p></div>
 
   <div *ngIf="taskArray.controls.length > 0">

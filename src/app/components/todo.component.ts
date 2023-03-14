@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Activities } from '../models';
-import { Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-todo',
@@ -14,6 +14,7 @@ export class TodoComponent implements OnInit, OnDestroy {
   taskArray!: FormArray
 
   valueChanges$!: Subscription
+  debounce!: Observable<any>
 
   @Output()
   onNewActivity = new Subject<Activities>()
@@ -22,6 +23,7 @@ export class TodoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.todoForm = this.createTodoForm()
+    // this.debounce = this.todoForm.valueChanges.
     this.valueChanges$ = this.todoForm.valueChanges.subscribe(
       values => {
         console.log("values>> ", values)
