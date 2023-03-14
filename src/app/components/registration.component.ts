@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RSVP } from 'src/app/models';
 
 @Component({
@@ -8,7 +8,7 @@ import { RSVP } from 'src/app/models';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  // one big group forthe whole form
+  // one big group for the whole form
   regForm!: FormGroup
 
   // form builder service provide by reactive form
@@ -27,9 +27,9 @@ export class RegistrationComponent implements OnInit {
     return this.fb.group({
       // label names of input
       // name: this.fb.<typeOfFormInput><inputType>(initial value)
-      name: this.fb.control<string>(''),
-      email: this.fb.control<string>(''),
-      age: this.fb.control<number>(18),
+      name: this.fb.control<string>('', [Validators.required, Validators.minLength(3)]),
+      email: this.fb.control<string>('', [Validators.required, Validators.email]),
+      age: this.fb.control<number>(18, [Validators.required, Validators.min(18)]),
       attendance: this.fb.control<string>('') // dropdown list
     })
   }
@@ -45,5 +45,11 @@ export class RegistrationComponent implements OnInit {
     console.info("Form submitted", rsvp)
     // this.regForm = this.createForm() // recreate form
     this.regForm.reset() // clear the form
+  }
+
+  // check if valid and if input was edited before
+  isControlInvalid(controlName: string): boolean {
+    const control = this.regForm.get(controlName) as FormControl
+    return control.invalid && (!control.pristine)
   }
 }

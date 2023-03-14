@@ -4,3 +4,14 @@ export interface RSVP {
     age: number
     attendance: boolean
 }
+
+export interface Task {
+    description: string
+    dueDate: Date
+}
+
+export interface Activities {
+    title: string
+    name: string
+    tasks: Task[]
+}

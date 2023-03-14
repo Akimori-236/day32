@@ -2,17 +2,17 @@
   <table>
     <tr>
       <td>Title:</td>
-      <td><input type="text" /></td>
+      <td><input type="text" formControlName="taskName" /></td>
     </tr>
     <tr>
       <td>Name:</td>
-      <td><input type="text" /></td>
+      <td><input type="text" formControlName="name" /></td>
     </tr>
     <tr>
       <td></td>
       <td>
-        <button type="submit">Save</button>
-        <button (click)="addTask()">Add Task</button>
+        <button type="submit" [disabled]="!isFormValid()">Save</button>
+        <button type="button" (click)="addTask()">Add Task</button>
       </td>
     </tr>
   </table>
