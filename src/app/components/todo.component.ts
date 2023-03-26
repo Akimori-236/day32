@@ -17,7 +17,7 @@ export class TodoComponent implements OnInit, OnDestroy {
   debounce!: Observable<any>
 
   @Output()
-  onNewActivity = new Subject<Activities>()
+  onNewActivity = new Subject<Activities>
 
   constructor(private fb: FormBuilder) { }
 
@@ -49,7 +49,7 @@ export class TodoComponent implements OnInit, OnDestroy {
   addTask() {
     const newTask = this.fb.group({
       description: this.fb.control<string>('', [Validators.required]),
-      dueDate: this.fb.control<string>('', [Validators.required])
+      dueDate: this.fb.control<string>('', [Validators.required, Validators])
     })
     this.taskArray.push(newTask)
   }
@@ -69,4 +69,6 @@ export class TodoComponent implements OnInit, OnDestroy {
   isFormValid(): boolean {
     return this.todoForm.valid && this.taskArray.length > 0
   }
+
+  
 }
