@@ -49,7 +49,7 @@ export class TodoComponent implements OnInit, OnDestroy {
   addTask() {
     const newTask = this.fb.group({
       description: this.fb.control<string>('', [Validators.required]),
-      dueDate: this.fb.control<string>('', [Validators.required, Validators])
+      dueDate: this.fb.control<Date>(new Date(), [Validators.required])
     })
     this.taskArray.push(newTask)
   }
@@ -70,5 +70,5 @@ export class TodoComponent implements OnInit, OnDestroy {
     return this.todoForm.valid && this.taskArray.length > 0
   }
 
-  
+
 }
